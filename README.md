@@ -1,80 +1,87 @@
-Tambola is a game that is widely played across the world. To participate in a round, players are given tickets (shown below) which have numbers on them. A round has multiple games in it. A round is complete when all games are complete. As numbers are announced by a dealer at random, players match the numbers with those on the ticket and cross them. If they have crossed all numbers needed to win a game, they can claim to be the winner of the game.
+# Tambola Claim Validator
 
-Problem statement: Claim validator
+**Tambola** is a widely played game across the world, where players are given tickets with numbers on them. The goal of the game is to cross off numbers as they are announced and to claim victory by matching certain winning patterns. This system validates whether a player's claim for a specific game is **Accepted** or **Rejected** based on the numbers announced so far.
 
-**Input**: Numbers announced so far, a valid ticket and claim for a specific game
+## Problem Statement: Claim Validator
 
-**Output**: Accepted/Rejected
+- **Input**: Numbers announced so far, a valid ticket, and a claim for a specific game.
+- **Output**: Whether the claim is **Accepted** or **Rejected**.
 
-**Games**
-Each round has multiple games. Each game has a winning pattern.
-● Top line: The ticket with all the numbers of the top row crossed fastest
-● Middle line: The ticket with all the numbers of the middle row crossed fastest
-● Bottom line: The ticket with the numbers of the bottom row crossed fastest
-● Full house: The ticket with all the 15 numbers crossed first
-● Early five: The fastest ticket to have 5 numbers crossed
+## Games
 
-**Rules**
+Each round of Tambola consists of multiple games. Each game has a unique winning pattern:
 
-1. System only has to return whether a claim is accepted or rejected
-2. A player's claim to victory is only valid if it is made immediately following the announcement of the number that completes their winning sequence.
+1. **Top Line**: The first ticket to cross all numbers on the top row.
+2. **Middle Line**: The first ticket to cross all numbers on the middle row.
+3. **Bottom Line**: The first ticket to cross all numbers on the bottom row.
+4. **Full House**: The first ticket to cross all 15 numbers on the ticket.
+5. **Early Five**: The first ticket to cross any 5 numbers.
 
-**Solution**:
+## Rules
 
-To implement the Tambola Claim Validator we will modularize the code by breaking it down into different classes.
+1. The system must only return whether the claim is **Accepted** or **Rejected**.
+2. A claim is only valid if it is made immediately following the announcement of the number that completes the winning sequence for the player.
 
-**Key Components:**
-ClaimValidator: The main service to validate claims.
-Ticket: A class representing the player's ticket.
-GameType: Enum to represent the different game types.
-GameValidator: Abstract class that various game types (Top Row, Middle Row, etc.) will extend.
-AnnouncedNumbers: A class to hold the list of numbers announced so far.
+---
 
-Ticket Input:
+## Solution Design
 
-The user enters the ticket's 3 rows as comma-separated values, where 0 represents an empty cell.
-Announced Numbers Input:
+To implement the Tambola Claim Validator, we break the problem into different components, ensuring the code is modular, adheres to **SOLID** principles, and avoids redundancy.
 
-The user enters the announced numbers as a comma-separated list.
-Game Type Input:
+### Key Components:
 
-The user specifies the game type by entering one of the following values: TOP_ROW, MIDDLE_ROW, BOTTOM_ROW, FULL_HOUSE, or EARLY_FIVE.
-Claim Validation:
+1. **ClaimValidator**: The main class that handles validating claims based on the game type.
+2. **Ticket**: A class representing the player's 3x9 grid of numbers.
+3. **GameType**: An enumeration defining the types of games (e.g., Top Row, Middle Row).
+4. **GameValidator**: An abstract class that various game types (Top Row, Middle Row, etc.) extend, implementing specific validation logic.
+5. **AnnouncedNumbers**: A class to hold the announced numbers and check if a specific number is announced.
 
-Based on the selected game type, a specific GameValidator is created.
-The ClaimValidator then validates the claim based on the provided ticket, announced numbers, and game type.
-Result:
+---
 
-The output is either "Accepted" or "Rejected" depending on the validation logic.
-Example Input/Output:
+## Input Structure
 
-Input:
-Enter your Tambola ticket (3 rows with 9 numbers, use 0 for empty cells):
-Row 1: 4, 16, 0, 0, 48, 0, 63, 76, 0
-Row 2: 7, 0, 23, 38, 0, 52, 0, 0, 80
-Row 3: 9, 0, 25, 0, 0, 56, 64, 0, 83
+1. **Ticket**: A 3x9 grid where each row contains numbers. Empty cells are represented by `0`.
+   - Example Ticket:
+     ```plaintext
+     4, 16, 0, 0, 48, 0, 63, 76, 0
+     7,  0, 23, 38, 0, 52, 0,  0, 80
+     9,  0, 25, 0, 0, 56, 64, 0, 83
+     ```
 
-Enter the announced numbers separated by commas:
-90, 4, 46, 63, 89, 16, 48, 76
+2. **Announced Numbers**: A list of comma-separated numbers that have been announced so far.
+   - Example: `90, 4, 46, 63, 89, 16, 48, 76`
 
-Enter the game type (TOP_ROW, MIDDLE_ROW, BOTTOM_ROW, FULL_HOUSE, EARLY_FIVE):
-TOP_ROW
+3. **Game Type**: A string representing the type of game being claimed.
+   - Valid values: `TOP_ROW`, `MIDDLE_ROW`, `BOTTOM_ROW`, `FULL_HOUSE`, `EARLY_FIVE`
 
-Output:
-Claim result: Accepted
+---
 
+## Claim Validation Process
 
-Input:
-Enter your Tambola ticket (3 rows with 9 numbers, use 0 for empty cells):
-Row 1: 4, 16, 0, 0, 48, 0, 63, 76, 0
-Row 2: 7, 0, 23, 38, 0, 52, 0, 0, 80
-Row 3: 9, 0, 25, 0, 0, 56, 64, 0, 83
+1. **Input Validation**:
+   - The user provides the ticket, the announced numbers, and the game type.
 
-Enter the announced numbers separated by commas:
-90, 4, 46, 63, 89, 16, 48, 76, 12
+2. **Game Selection**:
+   - Based on the provided game type, a corresponding `GameValidator` (e.g., `TopRowValidator`) is instantiated.
 
-Enter the game type (TOP_ROW, MIDDLE_ROW, BOTTOM_ROW, FULL_HOUSE, EARLY_FIVE):
-TOP_ROW
+3. **Claim Check**:
+   - The `ClaimValidator` class checks if the last announced number completes the winning pattern.
+   - If the claim is valid and made at the right time, the system outputs `Accepted`.
+   - Otherwise, the claim is rejected.
 
-Output:
-Claim result: Rejected
+---
+
+## Example Input/Output
+
+### Example 1: Top Row Win (Accepted)
+
+**Input**:
+```plaintext
+Ticket:
+4, 16, 0, 0, 48, 0, 63, 76, 0
+7,  0, 23, 38, 0, 52, 0,  0, 80
+9,  0, 25, 0, 0, 56, 64, 0, 83
+
+Announced Numbers: 90, 4, 46, 63, 89, 16, 48, 76
+
+Game Type: TOP_ROW
