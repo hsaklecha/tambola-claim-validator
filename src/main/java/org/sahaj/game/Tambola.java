@@ -4,7 +4,6 @@ package org.sahaj.game;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import org.sahaj.game.entities.*;
 import org.sahaj.game.validators.*;
-import org.sahaj.validators.*;
 
 import java.util.Arrays;
 import java.util.List;
