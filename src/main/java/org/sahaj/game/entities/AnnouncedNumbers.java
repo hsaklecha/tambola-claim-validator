@@ -1,4 +1,4 @@
-package org.sahaj;
+package org.sahaj.game.entities;
 
 import java.util.List;
 

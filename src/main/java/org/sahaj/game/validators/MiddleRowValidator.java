@@ -1,7 +1,8 @@
-package org.sahaj.validators;
+package org.sahaj.game.validators;
 
-import org.sahaj.AnnouncedNumbers;
-import org.sahaj.Ticket;
+import org.sahaj.game.entities.AnnouncedNumbers;
+import org.sahaj.game.entities.GameValidator;
+import org.sahaj.game.entities.Ticket;
 
 public class MiddleRowValidator implements GameValidator {
     private AnnouncedNumbers announcedNumbers;

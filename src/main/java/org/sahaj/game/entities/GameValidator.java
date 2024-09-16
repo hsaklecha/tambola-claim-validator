@@ -1,4 +1,4 @@
-package org.sahaj.validators;
+package org.sahaj.game.entities;
 
 public interface GameValidator {
     boolean isWinningClaim();

@@ -1,7 +1,4 @@
-package org.sahaj.validators;
-
-import org.sahaj.AnnouncedNumbers;
-import org.sahaj.GameType;
+package org.sahaj.game.entities;
 
 public class ClaimValidator {
     private GameType gameType;

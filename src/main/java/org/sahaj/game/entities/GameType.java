@@ -1,4 +1,4 @@
-package org.sahaj;
+package org.sahaj.game.entities;
 
 public enum GameType {
     TOP_ROW,

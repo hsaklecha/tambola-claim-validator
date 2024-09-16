@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.sahaj.AnnouncedNumbers;
-import org.sahaj.GameType;
-import org.sahaj.Ticket;
-import org.sahaj.validators.*;
+import org.sahaj.game.entities.*;
+import org.sahaj.game.validators.*;
 
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
