@@ -86,10 +86,13 @@ Announced Numbers: 90, 4, 46, 63, 89, 16, 48, 76
 
 Game Type: TOP_ROW
 ```
-
+**Output:**
 ```plaintext
 Claim result: Accepted
 ```
+
+### Example 2: Late Top Row Claim (Rejected)
+**Input**:
 
 ```plaintext
 Ticket:
@@ -101,7 +104,7 @@ Announced Numbers: 90, 4, 46, 63, 89, 16, 48, 76, 12
 
 Game Type: TOP_ROW
 ```
-
+**Output:**
 ```plaintext
 Claim result: Rejected
 ```
