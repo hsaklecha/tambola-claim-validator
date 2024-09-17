@@ -19,7 +19,7 @@
 ## Claim Validation Process
 
 1. **Input Validation**:
-   - The user provides the ticket, the announced numbers, and the game type.
+   - The user provides the ticket, the announced numbers and the game type.
 
 2. **Game Selection**:
    - Based on the provided game type, a corresponding `GameValidator` (e.g., `TopRowValidator`) is instantiated.
